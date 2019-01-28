@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="1.全程连接VPN\n2.本机只保留可支付的Google账号\n3.按照以下步骤完成后,重新安装带有google签名的WeSing版本."
-            android:textSize="22dp"
+            android:textSize="15dp"
             android:textColor="#ff0000"/>
     </LinearLayout>
 
@@ -29,9 +29,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="操作步骤:"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:textColor="#000000"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="5dp"/>
 
         <Button
             android:id="@+id/button_start_vpn"
@@ -40,7 +40,7 @@
             android:text="启动Express Vpn"
             android:textAllCaps="false"
             android:background="@drawable/button"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="2dp"/>
 
         <Button
             android:id="@+id/button_uninstall_wesing"
@@ -49,7 +49,7 @@
             android:text="卸载 WeSing"
             android:textAllCaps="false"
             android:background="@drawable/button"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="2dp"/>
 
         <Button
             android:id="@+id/button_clear_googleplay_cache"
@@ -58,7 +58,7 @@
             android:text="清除Google Play缓存"
             android:textAllCaps="false"
             android:background="@drawable/button"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="2dp"/>
 
         <Button
             android:id="@+id/button_clear_google_service"
@@ -67,7 +67,7 @@
             android:text="清除Google服务缓存"
             android:textAllCaps="false"
             android:background="@drawable/button"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="2dp"/>
 
         <Button
             android:id="@+id/button_clear_google_gsf"
@@ -76,7 +76,7 @@
             android:text="清除Google服务框架缓存"
             android:textAllCaps="false"
             android:background="@drawable/button"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="2dp"/>
 
         <Button
             android:id="@+id/button_clear_google_partnersetup"
@@ -85,7 +85,7 @@
             android:text="清除Google合作伙伴缓存"
             android:textAllCaps="false"
             android:background="@drawable/button"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="2dp"/>
 
         <Button
             android:id="@+id/button_clear_google_cache"
@@ -94,19 +94,19 @@
             android:text="清除Google缓存"
             android:textAllCaps="false"
             android:background="@drawable/button"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="2dp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="安装Google Play WeSing版本:"
-            android:textSize="22dp"
+            android:textSize="15dp"
             android:textColor="#000000" />
         <Button
             android:id="@+id/button_install_wesing_googleplay"
