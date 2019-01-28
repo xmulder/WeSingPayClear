@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder=new AlertDialog.Builder(this);
         builder.setTitle("使用须知");
-        builder.setMessage("使用后续操作前,请先删除机器上多余Google,只保留支付用Google账号");
+        builder.setMessage("1.全程连接VPN.\n2.本机只保留可支付的Google账号,其他账号请删除.\n3.按照以下步骤完成后,重新安装带有google签名的WeSing版本.");
         builder.setPositiveButton("继续", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
