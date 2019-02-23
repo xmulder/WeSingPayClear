@@ -9,11 +9,14 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -151,9 +154,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String sourceFile="/storage/self/primary/tencent/wns/Logs/com.tencent.wesing/";
-                String zipFile="/storage/self/primary/wesing.zip";
+                String zipFile="/storage/emulated/0/wesing.zip";
                 CompressOperate_zip4j file=new CompressOperate_zip4j();
                 file.compressZip4j(sourceFile,zipFile,null);
+
+                File file1=new File(zipFile);
+                if (file1.exists()){
+                    Toast.makeText(MainActivity.this,"Zip WeSing Local log successful",Toast.LENGTH_SHORT).show();
+                }
+
+                File zipFilePath = new File("/storage/emulated/0/");
+                File zipFiletoShare=new File(zipFilePath,"wesing.zip");
+                Uri contentUri= (Uri) FileProvider.getUriForFile(MainActivity.this,BuildConfig.APPLICATION_ID+".provider",zipFiletoShare);
+
+                Intent shareIntent=new Intent(Intent.ACTION_SEND);
+                shareIntent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                shareIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                shareIntent.setType("application/zip");
+                startActivity(shareIntent);
             }
         });
     }
