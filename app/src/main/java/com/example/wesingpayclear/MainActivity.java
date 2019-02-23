@@ -146,7 +146,10 @@ public class MainActivity extends AppCompatActivity {
         button_zip_wesing_log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String sourceFile="/storage/self/primary/tencent/wns/Logs/com.tencent.wesing/";
+                String zipFile="/storage/self/primary/";
+                CompressOperate_zip4j file=new CompressOperate_zip4j();
+                file.compressZip4j(sourceFile,zipFile,null);
             }
         });
     }
