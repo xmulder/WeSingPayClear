@@ -6,10 +6,9 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.provider.Settings;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -24,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Button button_clear_googlepartnersetup_cache;
     private Button button_clear_google_cache;
     private Button button_install_wesing_googleplay;
+    private Button button_zip_wesing_log;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return packageInfo!=null;
             }
+
         });
 
 
@@ -141,5 +142,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        button_zip_wesing_log=(Button)findViewById(R.id.button_zip_wesing_log);
+        button_zip_wesing_log.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 }
