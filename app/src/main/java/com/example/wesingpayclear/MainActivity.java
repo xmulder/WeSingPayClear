@@ -170,8 +170,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent shareIntent=new Intent(Intent.ACTION_SEND);
                 shareIntent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
                 shareIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                shareIntent.addCategory("android.intent.category.DEFAULT");
                 shareIntent.setType("application/zip");
-                startActivity(shareIntent);
+                shareIntent.putExtra(Intent.EXTRA_STREAM,contentUri);
+                startActivity(Intent.createChooser(shareIntent,"Share to......"));
             }
         });
     }
