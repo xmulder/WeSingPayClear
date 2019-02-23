@@ -1,5 +1,6 @@
 package com.example.wesingpayclear;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -7,6 +8,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
+
+        ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
 
         AlertDialog.Builder builder=new AlertDialog.Builder(this);
         builder.setTitle("使用须知");
@@ -147,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String sourceFile="/storage/self/primary/tencent/wns/Logs/com.tencent.wesing/";
-                String zipFile="/storage/self/primary/";
+                String zipFile="/storage/self/primary/wesing.zip";
                 CompressOperate_zip4j file=new CompressOperate_zip4j();
                 file.compressZip4j(sourceFile,zipFile,null);
             }
