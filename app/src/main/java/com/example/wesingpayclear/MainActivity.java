@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
@@ -153,27 +154,33 @@ public class MainActivity extends AppCompatActivity {
         button_zip_wesing_log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String sourceFile="/storage/self/primary/tencent/wns/Logs/com.tencent.wesing/";
-                String zipFile="/storage/emulated/0/wesing.zip";
-                CompressOperate_zip4j file=new CompressOperate_zip4j();
-                file.compressZip4j(sourceFile,zipFile,null);
+                String sourceFile = "/storage/self/primary/tencent/wns/Logs/com.tencent.wesing/";
+                String zipFile = "/storage/emulated/0/wesing.zip";
+                CompressOperate_zip4j file = new CompressOperate_zip4j();
+                file.compressZip4j(sourceFile, zipFile, null);
 
-                File file1=new File(zipFile);
-                if (file1.exists()){
-                    Toast.makeText(MainActivity.this,"Zip WeSing Local log successful",Toast.LENGTH_SHORT).show();
+                File file1 = new File(zipFile);
+                if (file1.exists()) {
+                    Toast.makeText(MainActivity.this, "Zip WeSing Local log successful", Toast.LENGTH_SHORT).show();
                 }
 
                 File zipFilePath = new File("/storage/emulated/0/");
-                File zipFiletoShare=new File(zipFilePath,"wesing.zip");
-                Uri contentUri= (Uri) FileProvider.getUriForFile(MainActivity.this,BuildConfig.APPLICATION_ID+".provider",zipFiletoShare);
+                File zipFiletoShare = new File(zipFilePath, "wesing.zip");
 
-                Intent shareIntent=new Intent(Intent.ACTION_SEND);
+                Uri contentUri = null;
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+                    Uri shareUri = Uri.fromFile(zipFiletoShare);
+                } else {
+                    contentUri = (Uri) FileProvider.getUriForFile(MainActivity.this, BuildConfig.APPLICATION_ID + ".provider", zipFiletoShare);
+                }
+
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
                 shareIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 shareIntent.addCategory("android.intent.category.DEFAULT");
                 shareIntent.setType("application/zip");
-                shareIntent.putExtra(Intent.EXTRA_STREAM,contentUri);
-                startActivity(Intent.createChooser(shareIntent,"Share to......"));
+                shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
+                startActivity(Intent.createChooser(shareIntent, "Share to......"));
             }
         });
     }
