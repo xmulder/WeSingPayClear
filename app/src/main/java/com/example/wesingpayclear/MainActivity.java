@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.content.Context;
 
 import java.io.File;
 
@@ -190,18 +191,19 @@ public class MainActivity extends AppCompatActivity {
         button_record_logcat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Context context = null;
                 LogRecorder logRecorder
                         = new LogRecorder.Builder(context)
-                        .setLogFolderName("foldername")
-                        .setLogFolderPath("/sdcard/foldername")
-                        .setLogFileNameSuffix("filesuffix")
-                        .setLogFileSizeLimitation(256)
-                        .setLogLevel(4)
-                        .addLogFilterTag("ActivityManager")
-                        .setPID(android.os.Process.myPid())
+                        .setLogFolderName("wslogcat")
+                        .setLogFolderPath("/storage/emulated/0/WeSingLog")
+                        .setLogFileNameSuffix("wesing_logcat")
+                        .setLogFileSizeLimitation(2048)
+                        .setLogLevel(2)
+                        .addLogFilterTag("com.tencent.wesing")
                         .build();
 
                 logRecorder.start();
+
             }
         });
     }
