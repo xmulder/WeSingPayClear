@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Process;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
@@ -29,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private Button button_clear_googlepartnersetup_cache;
     private Button button_clear_google_cache;
     private Button button_install_wesing_googleplay;
-    private Button button_zip_wesing_log;
+    private Button button_zip_wesing_wns_log;
+    private Button button_record_logcat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,8 +152,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button_zip_wesing_log=(Button)findViewById(R.id.button_zip_wesing_log);
-        button_zip_wesing_log.setOnClickListener(new View.OnClickListener() {
+        button_zip_wesing_wns_log=(Button)findViewById(R.id.button_zip_wesing_log);
+        button_zip_wesing_wns_log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String sourceFile = "/storage/self/primary/tencent/wns/Logs/com.tencent.wesing/";
@@ -181,6 +183,25 @@ public class MainActivity extends AppCompatActivity {
                 shareIntent.setType("application/zip");
                 shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
                 startActivity(Intent.createChooser(shareIntent, "Share to......"));
+            }
+        });
+
+        button_record_logcat=(Button)findViewById(R.id.button_record_logcat);
+        button_record_logcat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LogRecorder logRecorder
+                        = new LogRecorder.Builder(context)
+                        .setLogFolderName("foldername")
+                        .setLogFolderPath("/sdcard/foldername")
+                        .setLogFileNameSuffix("filesuffix")
+                        .setLogFileSizeLimitation(256)
+                        .setLogLevel(4)
+                        .addLogFilterTag("ActivityManager")
+                        .setPID(android.os.Process.myPid())
+                        .build();
+
+                logRecorder.start();
             }
         });
     }
