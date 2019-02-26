@@ -2,6 +2,15 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
+    signingConfigs {
+        release {
+            storeFile file("myreleasekey.keystore")
+            storePassword "password"
+            keyAlias "MyReleaseKey"
+            keyPassword "password"
+            v2SigningEnabled false
+        }
+    }
     defaultConfig {
         applicationId "com.example.wesingpayclear"
         minSdkVersion 15
@@ -16,6 +25,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    buildToolsVersion '28.0.3'
 }
 
 dependencies {

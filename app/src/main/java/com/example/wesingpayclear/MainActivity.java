@@ -171,10 +171,11 @@ public class MainActivity extends AppCompatActivity {
                 File zipFiletoShare = new File(zipFilePath, "wesing.zip");
 
                 Uri contentUri = null;
+                Uri shareUri;
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-                    Uri shareUri = Uri.fromFile(zipFiletoShare);
+                    shareUri = Uri.fromFile(zipFiletoShare);
                 } else {
-                    contentUri = (Uri) FileProvider.getUriForFile(MainActivity.this, BuildConfig.APPLICATION_ID + ".provider", zipFiletoShare);
+                    shareUri = FileProvider.getUriForFile(MainActivity.this, BuildConfig.APPLICATION_ID + ".provider", zipFiletoShare);
                 }
 
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
@@ -182,28 +183,8 @@ public class MainActivity extends AppCompatActivity {
                 shareIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 shareIntent.addCategory("android.intent.category.DEFAULT");
                 shareIntent.setType("application/zip");
-                shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
+                shareIntent.putExtra(Intent.EXTRA_STREAM, shareUri);
                 startActivity(Intent.createChooser(shareIntent, "Share to......"));
-            }
-        });
-
-        button_record_logcat=(Button)findViewById(R.id.button_record_logcat);
-        button_record_logcat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = null;
-                LogRecorder logRecorder
-                        = new LogRecorder.Builder(context)
-                        .setLogFolderName("wslogcat")
-                        .setLogFolderPath("/storage/emulated/0/WeSingLog")
-                        .setLogFileNameSuffix("wesing_logcat")
-                        .setLogFileSizeLimitation(2048)
-                        .setLogLevel(2)
-                        .addLogFilterTag("com.tencent.wesing")
-                        .build();
-
-                logRecorder.start();
-
             }
         });
     }
