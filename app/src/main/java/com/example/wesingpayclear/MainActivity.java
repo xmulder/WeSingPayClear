@@ -16,10 +16,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 import android.content.Context;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private Button button_clear_google_cache;
     private Button button_install_wesing_googleplay;
     private Button button_zip_wesing_wns_log;
-    private Button button_record_logcat;
+
+    private List<Wsc> wscList=new ArrayList<Wsc>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }).show();
+
+        initWsc();
+        WscAdapter wscAdapter=new WscAdapter(MainActivity.this,R.layout.wsc_listview,wscList);
+
+        ListView listView=(ListView)findViewById(R.id.list_view);
+        listView.setAdapter(wscAdapter);
 
         button_start_vpn=(Button)findViewById(R.id.button_start_vpn);
         button_start_vpn.setOnClickListener(new View.OnClickListener() {
@@ -187,5 +197,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(Intent.createChooser(shareIntent, "Share to......"));
             }
         });
+    }
+
+    private void initWsc(){
+
+        Wsc uninstallWeSing=new Wsc("卸载 WeSing",R.drawable.wesing);
+        wscList.add(uninstallWeSing);
+
     }
 }
