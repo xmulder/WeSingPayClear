@@ -2,19 +2,19 @@ package com.example.wesingpayclear;
 
 public class Wsc {
 
-    private String wscTextView;
-    private int wscImageId;
+    private static String wscTextView;
+    private static int wscImageId;
 
     public Wsc(String wscTextView,int wscImageId){
         this.wscImageId=wscImageId;
         this.wscTextView=wscTextView;
     }
 
-    public String getWscTextView(){
+    public static String getWscTextView(){
         return wscTextView;
     }
 
-    public int getWscImageId(){
+    public static int getWscImageId(){
         return wscImageId;
     }
 }

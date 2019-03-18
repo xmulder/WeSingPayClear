@@ -200,7 +200,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initWsc(){
-
+        Wsc startExpressVpn=new Wsc("启动Express Vpn",R.drawable.express_vpn);
+        wscList.add(startExpressVpn);
         Wsc uninstallWeSing=new Wsc("卸载 WeSing",R.drawable.wesing);
         wscList.add(uninstallWeSing);
 
