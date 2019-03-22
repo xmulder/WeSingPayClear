@@ -204,6 +204,9 @@ public class MainActivity extends AppCompatActivity {
         wscList.add(startExpressVpn);
         Wsc uninstallWeSing=new Wsc("卸载 WeSing",R.drawable.wesing);
         wscList.add(uninstallWeSing);
-
+        Wsc clearGooglePlayCache=new Wsc("清除Google Play缓存",R.drawable.googleplay_services);
+        wscList.add(clearGooglePlayCache);
+        Wsc clearGoogleCache=new Wsc("清除Google缓存",R.drawable.google);
+        wscList.add(clearGoogleCache);
     }
 }

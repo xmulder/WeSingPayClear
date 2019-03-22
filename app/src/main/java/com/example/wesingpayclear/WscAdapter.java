@@ -21,11 +21,31 @@ public class WscAdapter extends ArrayAdapter<Wsc> {
 
     public View getView(int position, View convertView, ViewGroup parent){
         Wsc wsc=getItem(position);
-        View view= LayoutInflater.from(getContext()).inflate(resourceId,null);
-        ImageView wsc_image=(ImageView)view.findViewById(R.id.image_view);
-        TextView wsc_textview=(TextView)view.findViewById(R.id.text_view);
-        wsc_image.setImageResource(Wsc.getWscImageId());
-        wsc_textview.setText(Wsc.getWscTextView());
-        return view;
+        ViewHolder viewHolder;
+        View viewt = null;
+        if(convertView==null){
+            viewt= LayoutInflater.from(getContext()).inflate(resourceId,null,false);
+            viewHolder=new ViewHolder();
+            viewHolder.wsc_image=(ImageView)viewt.findViewById(R.id.image_view);
+            viewHolder.wsc_textview=(TextView)viewt.findViewById(R.id.text_view);
+            viewt.setTag(viewHolder);
+        }else{
+            viewt=convertView;
+            viewHolder=(ViewHolder)viewt.getTag();
+        }
+        viewHolder.wsc_image.setImageResource(Wsc.getWscImageId());
+        viewHolder.wsc_textview.setText(Wsc.getWscTextView());
+        //ImageView wsc_image= (ImageView)viewt.findViewById(R.id.image_view);
+        //TextView wsc_textview=(TextView) viewt.findViewById(R.id.text_view);
+        //wsc_image.setImageResource(Wsc.getWscImageId());
+        //wsc_textview.setText(Wsc.getWscTextView());
+        return viewt;
     }
+
+    class ViewHolder{
+        ImageView wsc_image;
+        TextView wsc_textview;
+    }
+
+
 }
